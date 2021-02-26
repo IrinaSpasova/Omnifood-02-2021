@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"><!-- метатаг за кирилица -->
+    <meta name="description" content="Omnifood is a premium food delivery service with the mission to bring affordable and healthy meals to as many people as possible."> <!-- метатаг за СЕО-->
+    <meta name="vieport" content="width=device-width, initial-scale=1.0">
+    <!-- Тази мета е задължителна, за да работи queries файла, указва на телефоните да не зумват страницата, а да я скейлнат, започвайки от 1-->
+
+
+    <link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
+    <link rel="stylesheet" type="text/css" href="vendors/css/animate.css"> <!-- не бачка -->
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/queries.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!--<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" type="text/css">-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,900;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script> <!-- По препоръка на браузъра -->
+    <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script><!-- По препоръка на браузъра -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <title>Omnifood</title>
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="Resources/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Resources/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Resources/favicons/favicon-16x16.png">
+    <link rel="manifest" href="Resources/favicons/manifest.json">
+    <link rel="mask-icon" href="Resources/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="Resources/favicons/favicon.ico">
+    <meta name="msapplication-config" content="Resources/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff"> <!-- Фажикони -->
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="row">
+                <img src="resources/img/logo-white.png" alt="Omnifood-logo" class="logo">
+                <img src="resources/img/logo.png" alt="Omnifood-logo" class="logo-black">
+                <ul class="main-nav js--main-nav">
+                    <li> <a href="#features">Food delivery</a></li>
+                    <!-- #features = anchorpoint (отправна точка) за вътрешна връзка -->
+                    <li> <a href="#works">How it works</a></li>
+                    <li> <a href="#cities">Our cities </a></li>
+                    <li> <a href="#plans">Sign up </a></li>
+
+                </ul>
+
+                <a class="mobile-nav-icon js--nav-icon">
+                    <div class="i">
+                        <ion-icon name="logo-firebase"></ion-icon> <!-- Това е иконата за мобилното меню, под 750px -->
+                    </div>
+                </a>
+            </div>
+        </nav>
+
+
+
+        <!-- <a class="mobile-nav-icon js--nav-icon">
+                    <div class="c">
+                        <ion-icon name="close-outline" class="hide"></ion-icon>
+</div>
+                </a>                -Това е другата икона за мобилната навигация (х). 
+
+
+
+Поради омазване на всичко пояснвам:
+Има два варианта да се направи промяна в иконата на мобилната навигация от една картинка в друга:
+
+
+
+
+ 1. Стар начин на преподавателя:
+
+/* Mobile navigation */
+
+   $('.js--nav-icon').click(function() {
+        var nav = $('.js--main-nav');
+       
+       nav.slideToggle(200);
+        var icon = $('.js--nav-icon i');
+        if (icon.hasClass('ion-navicon-round')) {
+            icon.addClass('ion-close-round');
+            icon.removeClass('ion-navicon-round');
+        } else {
+            icon.addClass('ion-navicon-round');
+            icon.removeClass('ion-close-round');
+        }
+    });
+в css не се налагат промени
+
+--Категорично не работи, нямаме файл с икони/ инсталиран шрифт, от който да чете.---
+
+
+
+
+2. Нов начин -ученици:
+
+2.1. Вариант на Уилям:
+
+HTML:
+
+<a class="mobile-nav-icon js--nav-icon"><ion-icon name="menu"></ion-icon></a>
+<a class="mobile-nav-icon js--nav-icon"><ion-icon name="close" class="hide"></ion-icon></a>
+
+Note: Two <a> tags now, one with a class of .hide.
+
+
+CSS:
+
+.hide {
+    display: none;
+}
+
+jQuery:
+
+ $('.js--nav-icon').click(function(){
+       var nav = $('.js--main-nav');
+       var icon = $('.js--nav-icon ion-icon');
+       nav.slideToggle(200);
+        
+       if(icon.hasClass('hide')){
+          icon.toggleClass('hide')
+       } 
+        
+        
+    });
+
+При мен не работи! Прави иконите двойни по непонятни причини.
+
+
+2.2. Вариант на Парадигма:
+
+"There is also an alternative, in case you don't want to duplicate your html code.
+
+
+
+jQuery has the attr() method which checks for an attribute in an element and returns its value if it exists and 'undefined' otherwise. The same method also allows to add and remove attributes.
+
+
+
+The code below  compares if the value of the attribute name is 'menu'. If yes, it sets the name of the attribute to 'close', otherwise it sets it back to 'menu'."
+
+
+
+        if (icon.attr("name") === 'menu') {
+            icon.attr("name", 'close');
+        } else {
+            icon.attr("name", 'menu');
+        }
+          
+Допълнение на Алекс:
+
+      $('.js--nav-icon').click(function() {
+        var nav = $('.js--main-nav');
+        var icon = $('.js--nav-icon ion-icon');
+        
+            nav.slideToggle(200);
+        if (icon.attr("name") === 'menu') {
+            icon.attr("name", 'close');
+        } else {
+            icon.attr("name", 'menu');
+        }
+    });                                        ( тук си смених само имената на иконите, нищо друго не се пипа никъде, нито по CSS, нито по HTML)
+
+
+*************************************Работи!!!!!!!!!!!!!!!!!!!!!!!!!!!!************************
+
+Непробван вариант: 
+
+Qba600
+2 years ago
+6
+Hi, guys!
+After combining all of the elements above I ended up with fully working code :)
+- the icon changes when clicked
+- when window resized above 767 - icon is set to menu
+
+- when window resized above 767 - nav changes from none display to block
+
+ /* Mobile nav Animation */
+    $('.js--nav-icon').click(function() {
+        var nav = $('.js--main-nav');
+        var icon= $('.js--nav-icon ion-icon');
+        nav.slideToggle(200);
+        
+        if (icon.attr("name") === 'menu') {
+                    icon.attr("name", 'close');
+                } else {
+                    icon.attr("name", 'menu');
+                }
+    /* Window resizing and nav display */
+        $(window).resize(function(){
+ 
+            if ($(window).width() > 767){
+                nav.css("display", "block");
+            } 
+            else {
+                nav.css("display", "none");
+                icon.attr("name", 'menu')
+            }
+        });
+    });
+
+
+
+
+
+
+
+                         ***---***
+                    -->
+
+
+        <div class="hero-text-box">
+            <h1> Goodbye junk food. <br> Hello super healthy meals.</h1>
+            <a class="btn btn-full js--scroll-to-plans" href="#"> I’m hungry </a>
+            <a class="btn btn-ghost js--scroll-to-start" href="#"> Show me more </a>
+
+        </div>
+
+    </header>
+
+    <!-- секции- лекция 41-->
+    <section class="section-features js--section-features" id="features">
+        <!--   js--section-features се ползва за отделяне на класа css от класа js, така го изписваме за прегледност -->
+
+        <div class="row">
+            <h2>Get food fast &mdash; not fast food.</h2>
+            <p class="long-copy"> Hello, we’re Omnifood, your new premium food delivery service. We know you’re always busy. No time for cooking. So let us take care of that, we’re really good at it, we promise!</p>
+        </div>
+        <div class="row js--wp-1">
+            <div class="col span-1-of-4 box">
+                <div class="ion-icon">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                </div>
+                <h3>Up to 365 days/year</h3>
+                <p> Never cook again! We really mean that. Our subscription plans include up to 365 days/year coverage. You can also choose to order more flexibly if that's your style.</p>
+            </div>
+
+            <div class="col span-1-of-4 box">
+                <div class="ion-icon">
+                    <ion-icon name="rocket-outline"></ion-icon>
+                </div>
+                <h3>Ready in 20 minutes</h3>
+                <p>You're only twenty minutes away from your delicious and super healthy meals delivered right to your home. We work with the best chefs in each town to ensure that you're 100% happy.</p>
+            </div>
+
+            <div class="col span-1-of-4 box">
+                <div class="ion-icon">
+                    <ion-icon name="leaf-outline"></ion-icon>
+                </div>
+                <h3>100% organic</h3>
+                <p> All our vegetables are fresh, organic and local. Animals are raised without added hormones or antibiotics. Good for your health, the environment, and it also tastes better!</p>
+            </div>
+
+            <div class="col span-1-of-4 box">
+                <div class="ion-icon">
+                    <ion-icon name="thumbs-up-outline"></ion-icon>
+                </div>
+                <h3>Order anything</h3>
+                <p> We don't limit your creativity, which means you can order whatever you feel like. You can also choose from our menu containing over 100 delicious meals. It's up to you!</p>
+            </div>
+
+
+        </div>
+
+    </section>
+
+    <section class="section-meals">
+
+        <ul class="meals-showcase clearfix">
+            <li>
+                <figure class="meal-photo">
+                    <img src="resources/img/1.jpg" alt="Korean bibimbap with egg and vegetables">
+                </figure>
+            </li>
+
+            <li>
+                <figure class="meal-photo">
+                    <img src="resources/img/2.jpg" alt="Simple italian pizza with cherry tomatoes">
+                </figure>
+            </li>
+            <li>
+                <figure class="meal-photo">
+                    <img src="resources/img/3.jpg" alt="Chicken breast steak with vegetables">
+                </figure>
+            </li>
+            <li>
+                <figure class="meal-photo">
+                    <img src="resources/img/4.jpg" alt="Autumn pumpkin soup">
+                </figure>
+            </li>
+
+        </ul>
+
+        <ul class="meals-showcase clearfix">
+
+            <li>
+                <figure class="meal-photo">
+                    <img src="resources/img/5.jpg" alt="Paleo beef steak with vegetables">
+                </figure>
+            </li>
+            <li>
+                <figure class="meal-photo">
+                    <img src="resources/img/6.jpg" alt="Healthy baguette with egg and vegetables">
+                </figure>
+            </li>
+            <li>
+                <figure class="meal-photo">
+                    <img src="resources/img/7.jpg" alt="Burger with cheddar and bacon">
+                </figure>
+            </li>
+            <li>
+                <figure class="meal-photo">
+                    <img src="resources/img/8.jpg" alt="Granola with cherries and strawberries">
+                </figure>
+            </li>
+
+        </ul>
+
+    </section>
+
+    <section class="section-steps" id="works">
+        <div class="row">
+
+            <h2>How it works &mdash; Simple as 1, 2, 3 </h2>
+        </div>
+
+        <div class="row">
+            <div class="col span-1-of-2 steps-box">
+                <img src="resources/img/app-iPhone.png" alt="Omnofood app on iPhone" class="app-screen js--wp-2">
+            </div>
+
+            <div class="col span-1-of-2 steps-box">
+                <div class="works-step">
+
+                    <div>1</div>
+                    <p>Choose the subscription plan that best fits your needs and sign up today.</p>
+
+                </div>
+                <div class="works-step">
+
+                    <div>2</div>
+                    <p>Order your delicious meal using our mobile app or website. Or you can even call us!</p>
+
+                </div>
+                <div class="works-step">
+
+                    <div>3</div>
+                    <p>Enjoy your meal after less than 20 minutes. See you the next time!</p>
+                </div>
+
+
+                <a href="#" class="btn-app"> <img src="resources/img/download-app.svg" alt="App Store Button"></a>
+                <a href="#" class="btn-app"> <img src="resources/img/download-app-android.png" alt="Play Store Button"></a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section-cityes" id="cities">
+
+        <div class="row ">
+            <h2>We're currently in these cities</h2>
+        </div>
+
+        <div class="row js--wp-3">
+            <!--<div class="row"> така също може да се направят едно под друго, ако всяко е със собствен ред -->
+            <div class="col span-1-of-4 box">
+                <img src="resources/img/lisbon-3.jpg" alt="Lisbon">
+                <h3>Lisbon</h3>
+                <div class="city-feature">
+                    <div class="ion-icon-small">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </div>
+                    1600+ happy eaters
+                </div>
+                <div class="city-feature">
+                    <div class="ion-icon-small">
+                        <ion-icon name="ribbon-outline"></ion-icon>
+                    </div>
+                    60+ top chefs
+                </div>
+                <div class="city-feature">
+                    <div class="ion-icon-small">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                    </div>
+                    <a href="#">@omnifood_lx</a>
+                </div>
+
+            </div>
+            <!-- </div>-->
+
+            <div class="col span-1-of-4 box">
+                <img src="resources/img/san-francisco.jpg" alt="San Francisco">
+                <h3>San Francisco</h3>
+                <div class="city-feature">
+                    <div class="ion-icon-small">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </div>
+                    3700+ happy eaters
+                </div>
+                <div class="city-feature">
+                    <div class="ion-icon-small">
+                        <ion-icon name="ribbon-outline"></ion-icon>
+                    </div>
+                    160+ top chefs
+                </div>
+                <div class="city-feature">
+                    <div class="ion-icon-small">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                    </div>
+                    <a href="#"> @omnifood_sf</a>
+                </div>
+            </div>
+
+            <div class="col span-1-of-4 box">
+                <img src="resources/img/berlin.jpg" alt="Berlin">
+                <h3>Berlin</h3>
+                <div class="city-feature">
+                    <div class="ion-icon-small">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </div>
+                    2300+ happy eaters
+                </div>
+                <div class="city-feature">
+                    <div class="ion-icon-small">
+                        <ion-icon name="ribbon-outline"></ion-icon>
+                    </div>
+                    110+ top chefs
+                </div>
+                <div class="city-feature">
+                    <div class="ion-icon-small">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                    </div>
+                    <a href="#"> @omnifood_berlin </a>
+                </div>
+            </div>
+
+            <div class="col span-1-of-4 box">
+                <img src="resources/img/london.jpg" alt="London">
+                <h3>London</h3>
+                <div class="city-feature">
+                    <div class="ion-icon-small">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </div>
+                    1200+ happy eaters
+                </div>
+                <div class="city-feature">
+                    <div class="ion-icon-small">
+                        <ion-icon name="ribbon-outline"></ion-icon>
+                    </div>
+                    50+ top chefs
+                </div>
+                <div class="city-feature">
+                    <div class="ion-icon-small">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                    </div>
+                    <a href="#">@omnifood_london </a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section-testimonials">
+
+        <div class="row">
+
+            <h2> Our customers can't live without us</h2>
+        </div>
+        <div class="row">
+
+            <div class="col span-1-of-3">
+
+                <blockquote>
+                    <!--Цитати така се правят-->
+                    Omnifood is just awesome!<br>
+                    I just launched a startup which leaves me with no time for cooking, so Omnifood is a life-saver. Now that I got used to it, I couldn't live without my daily meals!
+                </blockquote>
+
+                <cite><img src="resources/img/customer-1.jpg" alt="1"> Alberto Duncan </cite> <!-- Така се указват автори под цитати -->
+            </div>
+
+            <div class="col span-1-of-3">
+
+                <blockquote>
+                    Inexpensive, healthy and great-tasting meals, delivered right to my home. We have lots of food delivery here in Lisbon, but no one comes even close to Omifood. Me and my family are so in love!
+                </blockquote>
+
+                <cite><img src="resources/img/customer-2.jpg" alt="2">Joana Silva </cite>
+            </div>
+
+            <div class="col span-1-of-3">
+
+                <blockquote>
+                    I was looking for a quick and easy food delivery service in San Franciso. I tried a lot of them and ended up with Omnifood. Best food delivery service in the Bay Area. Keep up the great work!
+                </blockquote>
+
+                <cite> <img src="resources/img/customer-3.jpg" alt="3">Milton Chapman </cite>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <section class="section-plans js--section-plans" id="plans">
+
+
+        <div class="row">
+
+            <h2> Start eating healthy today</h2>
+        </div>
+
+
+        <div class="row">
+
+            <div class="col span-1-of-3">
+                <div class="plan-box js--wp-4">
+
+                    <div class="UP">
+                        <h3> <strong> Premium </strong></h3>
+                        <p class="plan-price">$ 399 <span> per month </span>
+                            <!-- span прави промени по част от текста в параграф -->
+                        </p>
+                        <p class="price-per-meal">That’s only 13.30$ per meal</p>
+
+                    </div>
+                    <div>
+                        <ul>
+                            <li>
+                                <div class="ion-icon-small">
+                                    <ion-icon name="checkmark-outline"></ion-icon>
+
+                                </div>
+                                1 meal every day
+                            </li>
+
+                            <li>
+                                <div class="ion-icon-small">
+                                    <ion-icon name="checkmark-outline"></ion-icon>
+
+                                </div>
+                                Order 24/7
+                            </li>
+
+                            <li>
+                                <div class="ion-icon-small">
+                                    <ion-icon name="checkmark-outline"></ion-icon>
+
+                                </div>
+                                Access to newest creations
+                            </li>
+
+                            <li>
+                                <div class="ion-icon-small">
+                                    <ion-icon name="checkmark-outline"></ion-icon>
+
+                                </div>
+                                Free delivery
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="Down">
+                        <a href="#" class="btn btn-full"> Sign up now</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="col span-1-of-3">
+                <div class="plan-box">
+
+                    <div class="UP">
+                        <h3> <strong>PRO</strong></h3>
+                        <p class="plan-price"> $ 149 <span>per month</span></p>
+                        <p class="price-per-meal"> That’s only 14.90$ per meal</p>
+
+                    </div>
+                    <div>
+                        <ul>
+                            <li>
+                                <div class="ion-icon-small">
+                                    <ion-icon name="checkmark-outline"></ion-icon>
+
+                                </div>
+                                1 meal 10 days/month
+                            </li>
+
+                            <li>
+                                <div class="ion-icon-small">
+                                    <ion-icon name="checkmark-outline"></ion-icon>
+
+                                </div>
+                                Order 24/7
+                            </li>
+
+                            <li>
+                                <div class="ion-icon-small">
+                                    <ion-icon name="checkmark-outline"></ion-icon>
+
+                                </div>
+                                Access to newest creations
+                            </li>
+
+                            <li>
+                                <div class="ion-icon-small">
+                                    <ion-icon name="checkmark-outline"></ion-icon>
+
+                                </div>
+                                Free delivery
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="Down">
+                        <a href="#" class="btn btn-ghost"> Sign up now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col span-1-of-3">
+                <div class="plan-box">
+
+                    <div class="UP">
+                        <h3> <strong>Starter</strong></h3>
+                        <p class="plan-price"> $ 19 <span> per meal </span>
+                        </p>
+                        <p class="price-per-meal">&nbsp;</p>
+                    </div>
+                    <div>
+                        <ul>
+
+                            <!-- Тук имаме само 3 категории, не 4, за това директно го скривам <li>
+                                <div class="ion-icon-small">
+                                    <ion-icon name="checkmark-outline"></ion-icon>
+                                </div>
+                                
+                            </li>   -->
+                            <li>
+                                <div class="ion-icon-small">
+                                    <ion-icon name="checkmark-outline"></ion-icon>
+
+                                </div>
+                                1 meal
+                            </li>
+
+                            <li>
+                                <div class="ion-icon-small">
+                                    <ion-icon name="checkmark-outline"></ion-icon>
+
+                                </div>
+                                Order from 8 am to 12 pm
+                            </li>
+
+                            <li>
+                                <div class="ion-icon-small">
+                                    <ion-icon name="checkmark-outline"></ion-icon>
+
+                                </div>
+                                Free delivery
+                            </li>
+
+                        </ul>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="Down3">
+                        <a href="#" class="btn btn-ghost"> Sign up now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+
+    <section class="section-form">
+
+        <div class="row">
+            <h2>We're happy to hear from you</h2>
+        </div>
+
+        <div class="row">
+
+            <form method="post" action="#" class="contact-form">
+
+                <div class="row">
+
+                    <div class=" col span-1-of-3">
+                        <label>Name</label> <!-- ако сложим атрибутът for="" и напишем името на id-то в кавичките - курсорът ще се мести в полетата при натискане на Name (for="name"), работи само с текстови форми, без textarea-->
+                    </div>
+
+                    <div class="col span-2-of-3">
+
+                        <input type="text" name="name" id="name" placeholder="Your name" required>
+
+
+                    </div>
+                    <!-- 2-3 Означава, че указваме колоната да е с двойна ширина, required означава, че няма как да пратиш формата без всички реквизити -->
+                </div>
+
+                <div class="row">
+                    <div class=" col span-1-of-3">
+                        <label>Email</label>
+                    </div>
+
+                    <div class="col span-2-of-3">
+
+                        <input type="email" name="name" id="email" placeholder="Your email" required>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class=" col span-1-of-3">
+                        <label>How did you find us?</label>
+                    </div>
+
+                    <div class="col span-2-of-3">
+
+                        <select name="Find-us" id="Find-us">
+                            <option value="friends">Friends</option>
+                            <option value="Search">Search engine</option>
+                            <option value="ad">Advertisement</option>
+                            <option value="other">Other</option>
+                            <!-- Ако сложим selected след value="" ще направим чекче преди думата при избор -->
+                        </select> <!-- Прави форма с падащо меню и избори-->
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class=" col span-1-of-3">
+                        <label>Newsletter</label>
+                    </div>
+
+                    <div class="col span-2-of-3">
+
+                        <input type="checkbox" name="news" id="news" checked>Yes, please.
+
+                    </div>
+                </div>
+
+                <div class="row">
+
+
+                    <div class=" col span-1-of-3">
+                        <label>Drop us a line</label>
+                    </div>
+
+                    <div class="col span-2-of-3">
+
+                        <textarea name="mesage" placeholder="Your message"></textarea>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+
+                    <div class=" col span-1-of-3">
+                        <label>&nbsp;</label>
+                    </div>
+
+                    <div class="col span-2-of-3">
+
+                        <input type="submit" value="Send it!"> <!-- Тук се слага надписът на бутона -->
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- Футърите не се правят в секции, имат си име, виж по-долу -->
+
+    <footer>
+
+        <div class="row">
+
+            <div class="col span-1-of-2">
+                <ul class="footer-nav">
+                    <li> <a href="#">About us </a></li>
+                    <li> <a href="#">Blog </a></li>
+                    <li> <a href="#"> Press</a></li>
+                    <li> <a href="#"> iOS App</a></li>
+                    <li> <a href="#"> Android App</a></li>
+                </ul>
+            </div>
+
+            <div class="col span-1-of-2">
+
+                <ul class="social-links">
+                    <li> <a href="#">
+                            <div class="ion-icon-footer-facebook">
+                                <ion-icon name="logo-facebook"></ion-icon>
+                            </div>
+                        </a></li>
+
+                    <li> <a href="#">
+                            <div class="ion-icon-footer-twitter">
+                                <ion-icon name="logo-twitter"></ion-icon>
+                            </div>
+
+                        </a></li>
+                    <li> <a href="#">
+                            <div class="ion-icon-footer-google">
+                                <ion-icon name="logo-google"></ion-icon>
+                            </div>
+                        </a></li>
+                    <li> <a href="#">
+                            <div class="ion-icon-footer-instagram">
+                                <ion-icon name="logo-instagram"></ion-icon>
+                            </div>
+                        </a></li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <p>
+                Copyright &copy; 2021 by Omnifood. All rights reserved.
+            </p>
+
+
+
+        </div>
+        <!-- Първоначално иконките са са стилизирани във визията, която см наравили за линковете от градовете. Трябва да се промени! -->
+
+
+
+    </footer>
+
+
+
+
+    <!--<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js">
+         Скрипт за иконите. Премахнат по препоръка на браузъра. Сложен нов скрипт в хедъра.
+        
+    </script>-->
+
+
+    <!-- Скрипт за .js от hosted libraries Google: 
+        -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+
+    </script>
+    <!-- Скрипт за стари браузъри i и не само:
+        -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script><!-- Скрипт за стари браузъри -->
+
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><!-- Скрипт за стари браузъри -->
+
+    <script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script><!-- Скрипт за стари браузъри -->
+    <script src="vendors/js/jquery.waypoints.min.js"></script>
+
+    <!--Link към нашия js файл с jquery, винаги трябва да е последен: -->
+    <script src="resources/js/script.js">
+
+    </script>
+
+    <!--As you may have noticed, the jsDelivr website changed its interface since Jonas filmed this course (no more integrate button!). Since many here found this disruptive, here's an up-to-date tutorial for using the new interface.
+
+1) Go to the site, and write the package name in the search box like Jonas shows. Important: make sure to include the file termination (.js, for instance), otherwise you might get different results!
+
+2) Click on the package name (the upper one of the two names), which will lead you to the package page within jsDelivr.
+
+3) Scrolling down the page, you'll see several file paths, all of them including the name of the package. The first path, crowned on its own row above the others, is the one you want.
+
+4) To the right of it, there should be an open-file symbol, with "copy to clipboard" appearing when you hover over it. This is the new "integrate" button, as it were. Click on it, and then click on "copy url".
+
+5). Create a new script tag at the bottom of your html doc, just above your closing "body" tag (while not forgetting that the order of the scripts matters, so put them in the order Jonas shows in the video!), and within its src="" attribute, paste your clipboard (do a simple paste; the link has already been copied when you clicked on "copy to clipboard").
+
+That's it! It's really just one extra click away from the old interface :).
+
+Try to do it the way I've described so that you learn to use jsDelivr. If you still can't find the package - maybe the interface changed yet again since I posted this -, here are the scripts to use for the packages you need:
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>
+
+If you find any of them are outdated, you just need to find the latest version and replace the number of my version with the current one, e.g. selectivizr@1.9.2 instead of selectivizr@1.0.3. -->
+
+</body></html>
